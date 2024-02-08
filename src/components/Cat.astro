@@ -1,0 +1,213 @@
+---
+export interface Props {
+  left: string;
+  top: string;
+  seg: string;
+}
+
+const { left, top, seg } = Astro.props;
+---
+
+<div
+  class="cat-container"
+  style=`left:${left}rem;
+  top:${top}rem;
+  animation-duration: ${seg}s;;
+  `
+>
+  <input type="checkbox" />
+  <div class="check-container eyes"></div>
+  <div class="nose"></div>
+  <div class="face"></div>
+</div>
+
+<style>
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    cursor: pointer;
+    z-index: 12;
+    height: 80px;
+    border-radius: 20%;
+
+    appearance: none;
+    cursor: pointer;
+  }
+  input:checked {
+    counter-increment: game;
+  }
+
+  input[type="checkbox"]:checked ~ .cat-container {
+    animation-play-state: paused;
+  }
+
+  .check-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    cursor: pointer;
+    z-index: 10;
+    height: 80px;
+    border-radius: 20%;
+  }
+  .check-container::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 6px;
+    top: 30px;
+    left: 55px;
+    background: #000;
+    border-radius: 50%;
+  }
+  .check-container::before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 6px;
+    top: 30px;
+    left: 18px;
+    background: #000;
+    border-radius: 50%;
+  }
+  .cat-container {
+    position: absolute;
+    width: 80px;
+    height: 70px;
+    border-radius: 100%;
+    background-color: white;
+    color: #fff;
+    animation-name: cat-animation;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    z-index: 2;
+    animation-direction: alternate-reverse;
+  }
+  .nose {
+    position: absolute;
+    width: 80px;
+    height: 70px;
+    border-radius: 100%;
+    background-color: white;
+    z-index: 2;
+  }
+  .nose::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 6px;
+    border-radius: 100%;
+    background-color: #000;
+    left: 0;
+    right: 0;
+    top: 45px;
+    margin: auto;
+    z-index: 1;
+  }
+  /*   .cat::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0;
+    height: 80px;
+    background: linear-gradient(140deg, white 19%, transparent 20%),
+      linear-gradient(-140deg, white 19%, transparent 20%);
+    border-radius: 7%;
+    opacity: 0.8;
+  } */
+  /*   .cat::after {
+    content: "";
+    position: absolute;
+    width: 90%;
+    top: 3px;
+    height: 80px;
+    background: linear-gradient(145deg, pink 19%, transparent 20%),
+      linear-gradient(-145deg, pink 19%, transparent 20%);
+    border-radius: 7%;
+    left: 0;
+    right: 0;
+    margin: auto;
+  } */
+
+  .face {
+    position: relative;
+    width: 10px;
+    height: 6px;
+    border-radius: 100%;
+    left: 0;
+    right: 0;
+    top: 45px;
+    margin: auto;
+    z-index: 1;
+  }
+  .face::before {
+    content: "";
+    position: absolute;
+    width: 80px;
+    top: -45px;
+    left: -35px;
+    height: 80px;
+    background: linear-gradient(140deg, white 19%, transparent 20%),
+      linear-gradient(-140deg, white 19%, transparent 20%);
+    border-radius: 7%;
+    opacity: 0.8;
+    z-index: 1;
+  }
+
+  .face::after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    top: -40px;
+    left: -30px;
+    height: 80px;
+    z-index: 1;
+    background: linear-gradient(145deg, pink 19%, transparent 20%),
+      linear-gradient(-145deg, pink 19%, transparent 20%);
+    border-radius: 7%;
+  }
+
+  .cat-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 50px;
+    height: 100px;
+    background: white;
+    border-radius: 50px;
+  }
+  .check-container::after,
+  .check-container::before {
+    animation-name: blink;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+  @keyframes blink {
+    0% {
+      height: 6px;
+    }
+    5% {
+      transform: translate(0px, 2px);
+      height: 1px;
+    }
+    10% {
+      transform: translate(0px, 0px);
+      height: 6px;
+    }
+  }
+
+  @keyframes cat-animation {
+    25% {
+      top: 40rem;
+    }
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+export interface Props {
+  position: string;
+  position2: string;
+  height: string;
+  width: string;
+}
+
+const { position, position2, height, width } = Astro.props;
+---
+
+<div
+  class="wall"
+  style=`
+    ${position}: 0;
+    ${position2}: 0;
+    height: ${height}px;
+    width: ${width}px;
+    margin: auto;
+  `
+>
+</div>
+
+<style>
+  .wall {
+    position: absolute;
+    z-index: 3;
+
+    background: linear-gradient(180deg, #9b690c 8%, #c28425 23%);
+    bottom: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+  }
+  .wall::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 75px;
+    background: linear-gradient(130deg, forestgreen 18%, transparent 20%),
+      linear-gradient(-130deg, forestgreen 18%, transparent 20%);
+    background-size: 45px 300px;
+  }
+</style>

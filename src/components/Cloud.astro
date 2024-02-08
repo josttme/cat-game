@@ -1,0 +1,43 @@
+---
+export interface Props {
+  top: string;
+  left: string;
+}
+
+const { top, left } = Astro.props;
+---
+
+<div class="cloud" style=`top:${top}px; left:${left}px;`></div>
+<style>
+  .cloud {
+    width: 200px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50px;
+    position: absolute;
+    font-size: 5rem;
+    opacity: 0.5;
+  }
+
+  .cloud::before {
+    content: "";
+    width: 70px;
+    height: 70px;
+    background: #fff;
+    border-radius: 100px;
+    position: absolute;
+    top: -35px;
+    left: 25px;
+  }
+
+  .cloud::after {
+    content: "";
+    width: 110px;
+    height: 110px;
+    background: #fff;
+    border-radius: 150px;
+    position: absolute;
+    top: -60px;
+    right: 20px;
+  }
+</style>

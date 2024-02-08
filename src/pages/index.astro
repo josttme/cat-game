@@ -1,0 +1,49 @@
+---
+import Bush from "../components/Bush.astro";
+import Cat from "../components/Cat.astro";
+import Cloud from "../components/Cloud.astro";
+import Wall from "../components/Wall.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Cat game">
+  <section class="phone">
+    <Bush scaleX="1" position="left" />
+    <Bush scaleX="-1" position="right" />
+    <Wall position="right" position2="left" height="570" width="260" />
+    <Wall position="left" position2="left" height="430" width="250" />
+    <Wall position="right" position2="right" height="300" width="260" />
+    <Cat left="5" top="21" seg="1" />
+    <Cat left="27" top="29" seg="1.1" />
+    <Cat left="16" top="12" seg="1.6" />
+    <Cloud top="120" left="30" />
+    <Cloud top="80" left="350" />
+    <h3 class="total-count">Total Count:</h3>
+  </section>
+</Layout>
+
+<style>
+  .phone {
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(80, 170, 255);
+    width: 100vw;
+    height: 100vh;
+    counter-reset: game;
+  }
+  .total-count::after {
+    content: counter(game);
+  }
+  h3 {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  @media (min-width: 615px) {
+    .phone {
+      width: 600px;
+      height: 90vh;
+      border-radius: 2rem;
+      border: solid 0.5rem #000;
+    }
+  }
+</style>
